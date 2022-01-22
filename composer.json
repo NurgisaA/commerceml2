@@ -1,10 +1,10 @@
 {
-    "name": "a-gallyamov/commerceml2",
+    "name": "NurgisaA/commerceml2",
     "type": "library",
     "homepage": "https://github.com/a-gallyamov/commerceml2",
     "license": "MIT",
     "autoload": {
-        "psr-4": {"A_Gallyamov\\CommerceML\\": "src/"}
+        "psr-4": {"NurgisaA\\CommerceML\\": "src/"}
     },
     "require": {
         "php":">=5.3.0"
