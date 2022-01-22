@@ -3,6 +3,7 @@ PHP CommerceML2
 
 Библиотека с небольшими правками для универсального парсинга CommerceML2 файлов. <br />
 Автор оригинальной сборки: [Zenwalker](https://github.com/zenwalker/php-commerceml)
+Форк сборки: [A-Gallyamov](https://github.com/a-gallyamov/commerceml2)
 
 ```composer log
 composer require a-gallyamov/commerceml2
