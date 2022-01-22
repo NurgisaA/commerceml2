@@ -93,6 +93,7 @@ class CommerceML
         if ($offersXml) {
             if ($offersXml->ПакетПредложений->Предложения) {
                 foreach ($offersXml->ПакетПредложений->Предложения->Предложение as $offer) {
+
                     $productId                               = (string)$offer->Ид;
                     $buffer['products'][$productId]['offer'] = $offer;
                 }
@@ -167,8 +168,17 @@ class CommerceML
      */
     public function parseStorageList($offersXml)
     {
-        if ($offersXml->ПакетПредложений->Склады) {
-            foreach ($offersXml->ПакетПредложений->Склады->Склад as $xmlStorageList) {
+//        if ($offersXml->ПакетПредложений->Склады) {
+//            foreach ($offersXml->ПакетПредложений->Склады->Склад as $xmlStorageList) {
+//                $priceType = new StorageList($xmlStorageList);
+//                $this->getCollection('storageList')->add($xmlStorageList);
+//                $data[] = $xmlStorageList;
+//            }
+//
+//            return $data;
+//        }
+        if ($offersXml->ПакетПредложений->Предложения) {
+            foreach ($offersXml->ПакетПредложений->Предложения as $xmlStorageList) {
                 $priceType = new StorageList($xmlStorageList);
                 $this->getCollection('storageList')->add($xmlStorageList);
                 $data[] = $xmlStorageList;
@@ -187,7 +197,9 @@ class CommerceML
     public function parseProperties($importXml)
     {
         if ($importXml->Классификатор->Свойства) {
-            foreach ($importXml->Классификатор->Свойства->Свойство as $xmlProperty) {
+            $data = [];
+//            foreach ($importXml->Классификатор->Свойства->Свойство as $xmlProperty) {
+            foreach ($importXml->Классификатор->Свойства->СвойствоНоменклатуры as $xmlProperty) {
                 $property = new Property($xmlProperty);
                 $this->getCollection('property')->add($property);
                 $data[] = $property;
@@ -267,6 +279,7 @@ class CommerceML
      */
     public function getCollection($name)
     {
+
         return $this->collections[$name];
     }
 

@@ -59,11 +59,19 @@ class Product extends Model
      */
     public $properties = [];
 
+    /**
+     * @var array $specification
+     */
+    public $specification = [];
 
     /**
      * @var array $storage
      */
     public $storage = [];
+    /**
+     * @var array $image
+     */
+    public $image = [];
 
 
     /**
@@ -74,9 +82,10 @@ class Product extends Model
      */
     public function __construct($importXml = null, $offersXml = null)
     {
-        $this->name        = '';
-        $this->quantity    = 0;
+        $this->name = '';
+        $this->quantity = 0;
         $this->description = '';
+
 
         if (!is_null($importXml)) {
             $this->loadImport($importXml);
@@ -98,13 +107,15 @@ class Product extends Model
     {
         $this->id = trim($xml->Ид);
 
-        $this->name        = trim($xml->Наименование);
+        $this->name = trim($xml->Наименование);
         $this->description = trim($xml->Описание);
+//        $this->image = trim($xml->Картинка);
 
-        $this->sku  = trim($xml->Артикул);
+        $this->sku = trim($xml->Артикул);
         $this->unit = trim($xml->БазоваяЕдиница);
 
         $this->status = ($xml->Статус) ? trim($xml->Статус) : '';
+
 
         if ($xml->Группы) {
             foreach ($xml->Группы->Ид as $categoryId) {
@@ -114,15 +125,28 @@ class Product extends Model
 
         if ($xml->ЗначенияРеквизитов) {
             foreach ($xml->ЗначенияРеквизитов->ЗначениеРеквизита as $value) {
-                $name                    = (string)$value->Наименование;
+                $name = (string)$value->Наименование;
                 $this->requisites[$name] = (string)$value->Значение;
             }
         }
+        if ($xml->Картинка) {
+            foreach ($xml->Картинка as $value) {
+                $this->image[] = (string)$value;
+            }
+        }
+        if ($xml->ХарактеристикиТовара) {
+            foreach ($xml->ХарактеристикиТовара->ХарактеристикаТовара as $value) {
 
+
+                $name = (string)$value->Наименование;
+                $this->specification[$name]['value'] = (string)$value->Значение;
+                $this->specification[$name]['is_filter'] = ((string)$value->ДляФильтра == "true") ? true : false;
+            }
+        }
         if ($xml->ЗначенияСвойств) {
             foreach ($xml->ЗначенияСвойств->ЗначенияСвойства as $prop) {
 
-                $id    = (string)$prop->Ид;
+                $id = (string)$prop->Ид;
                 $value = (string)$prop->Значение;
 
                 if ($value) {
@@ -131,7 +155,7 @@ class Product extends Model
             }
         }
 
-        
+
     }
 
     /**
@@ -152,19 +176,28 @@ class Product extends Model
                 $id = (string)$price->ИдТипаЦены;
 
                 $this->price[$id] = [
-                    'type'     => $id,
+                    'type' => $id,
                     'currency' => (string)$price->Валюта,
-                    'value'    => (float)$price->ЦенаЗаЕдиницу
+                    'value' => (float)$price->ЦенаЗаЕдиницу
                 ];
             }
         }
+        if ($xml->КоличествоПомагазинам->Остаток) {
+            foreach ($xml->КоличествоПомагазинам->Остаток as $item) {
+                $id = (string)$item->ИдМагазина;
 
-        if ($xml->Склад) {
-            foreach ($xml->Склад as $storage) {
-                $id = (string)$storage['ИдСклада'];
-                $this->storage[$id] = (string)$storage['КоличествоНаСкладе'];
+                $this->storage[$id] = [
+                    'name' => (string)$item->Наименование,
+                    'value' => (int)$item->Количество
+                ];
             }
         }
+//        if ($xml->Склад) {
+//            foreach ($xml->Склад as $storage) {
+//                $id = (string)$storage['ИдСклада'];
+//                $this->storage[$id] = (string)$storage['КоличествоНаСкладе'];
+//            }
+//        }
     }
 
     /**
