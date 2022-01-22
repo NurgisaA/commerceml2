@@ -1,6 +1,6 @@
-<?php namespace A_Gallyamov\CommerceML\Model;
+<?php namespace NurgisaA\CommerceML\Model;
 
-use A_Gallyamov\CommerceML\ORM\Collection;
+use NurgisaA\CommerceML\ORM\Collection;
 
 class PropertyCollection extends Collection
 {

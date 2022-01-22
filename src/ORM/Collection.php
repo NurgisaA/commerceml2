@@ -1,4 +1,4 @@
-<?php namespace A_Gallyamov\CommerceML\ORM;
+<?php namespace NurgisaA\CommerceML\ORM;
 
 class Collection
 {

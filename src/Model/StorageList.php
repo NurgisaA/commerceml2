@@ -1,6 +1,6 @@
-<?php namespace A_Gallyamov\CommerceML\Model;
+<?php namespace NurgisaA\CommerceML\Model;
 
-use A_Gallyamov\CommerceML\ORM\Model;
+use NurgisaA\CommerceML\ORM\Model;
 
 class StorageList extends Model
 {

@@ -1,16 +1,16 @@
-<?php namespace A_Gallyamov\CommerceML;
+<?php namespace NurgisaA\CommerceML;
 
-use A_Gallyamov\CommerceML\Model\Category;
-use A_Gallyamov\CommerceML\Model\CategoryCollection;
-use A_Gallyamov\CommerceML\Model\PriceType;
-use A_Gallyamov\CommerceML\Model\PriceTypeCollection;
-use A_Gallyamov\CommerceML\Model\Product;
-use A_Gallyamov\CommerceML\Model\ProductCollection;
-use A_Gallyamov\CommerceML\Model\Property;
-use A_Gallyamov\CommerceML\Model\PropertyCollection;
-use A_Gallyamov\CommerceML\Model\StorageList;
-use A_Gallyamov\CommerceML\Model\StorageListCollection;
-use A_Gallyamov\CommerceML\ORM\Collection;
+use NurgisaA\CommerceML\Model\Category;
+use NurgisaA\CommerceML\Model\CategoryCollection;
+use NurgisaA\CommerceML\Model\PriceType;
+use NurgisaA\CommerceML\Model\PriceTypeCollection;
+use NurgisaA\CommerceML\Model\Product;
+use NurgisaA\CommerceML\Model\ProductCollection;
+use NurgisaA\CommerceML\Model\Property;
+use NurgisaA\CommerceML\Model\PropertyCollection;
+use NurgisaA\CommerceML\Model\StorageList;
+use NurgisaA\CommerceML\Model\StorageListCollection;
+use NurgisaA\CommerceML\ORM\Collection;
 
 
 class CommerceML
