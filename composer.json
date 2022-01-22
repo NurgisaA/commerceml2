@@ -1,7 +1,7 @@
 {
-    "name": "NurgisaA/commerceml2",
+    "name": "nurgisa-a/commerceml2",
     "type": "library",
-    "homepage": "https://github.com/a-gallyamov/commerceml2",
+    "homepage": "https://github.com/NurgisaA/commerceml2",
     "license": "MIT",
     "autoload": {
         "psr-4": {"NurgisaA\\CommerceML\\": "src/"}
