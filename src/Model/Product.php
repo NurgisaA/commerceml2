@@ -72,6 +72,10 @@ class Product extends Model
      * @var array $image
      */
     public $image = [];
+    /**
+     * @var string
+     */
+    public $vendor_code;
 
 
     /**
@@ -111,7 +115,8 @@ class Product extends Model
         $this->description = trim($xml->Описание);
 //        $this->image = trim($xml->Картинка);
 
-        $this->sku = trim($xml->Артикул);
+        $this->sku = trim($xml->ШтрихКод);
+        $this->vendor_code = trim($xml->Артикул);
         $this->unit = trim($xml->БазоваяЕдиница);
 
         $this->status = ($xml->Статус) ? trim($xml->Статус) : '';
