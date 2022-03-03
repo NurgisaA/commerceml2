@@ -76,6 +76,10 @@ class Product extends Model
      * @var string
      */
     public $vendor_code;
+    /**
+     * @var string
+     */
+    public $merchant_code;
 
 
     /**
@@ -116,6 +120,7 @@ class Product extends Model
 //        $this->image = trim($xml->Картинка);
 
         $this->sku = trim($xml->ШтрихКод);
+        $this->merchant_code = trim($xml->КодНоменклатуры);
         $this->vendor_code = trim($xml->Артикул);
         $this->unit = trim($xml->БазоваяЕдиница);
 
@@ -191,8 +196,10 @@ class Product extends Model
             foreach ($xml->КоличествоПомагазинам->Остаток as $item) {
                 $id = (string)$item->ИдМагазина;
 
+
                 $this->storage[$id] = [
                     'name' => (string)$item->Наименование,
+                    'address' => (string)$item->АдресМагазина,
                     'value' => (int)$item->Количество
                 ];
             }
